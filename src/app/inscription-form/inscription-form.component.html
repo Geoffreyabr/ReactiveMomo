@@ -1,0 +1,49 @@
+<form [formGroup]="inscriptionForm" (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm" class="mx-auto">
+  <div class="form-row">
+    <div class="col-md-3 mb-2">
+      <input type="text" class="form-control" placeholder="Identifiant" formControlName="identifiant">
+      <small *ngIf="myForm.submitted && inscriptionForm.controls['identifiant'].errors" class="text-danger">
+        <span *ngIf="inscriptionForm.controls['identifiant'].errors?.['required']">
+          L'identifiant est obligatoire 
+        </span>
+      </small>
+    </div>
+    
+      <div class="col-md-3 mb-2">
+        <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password">
+        <small *ngIf="myForm.submitted && inscriptionForm.controls['password']?.errors" class="text-danger">
+          <span *ngIf="inscriptionForm.controls['password']?.errors?.['required']">
+            Le mot de passe est obligatoire
+          </span>
+          <span *ngIf="inscriptionForm.controls['password']?.touched && inscriptionForm.controls['password']?.errors?.['minlength']">
+            Le mot de passe doit contenir au minimum 5 caractères 
+          </span>
+        </small>
+      </div>
+      <div class="col-md-3 mb-2">
+        <input type="password" class="form-control" placeholder="Confirmez mot de passe" formControlName="passwordConfirm">
+        <small *ngIf="myForm.submitted && inscriptionForm.controls['passwordConfirm']?.errors" class="text-danger">
+          <span *ngIf="inscriptionForm.controls['passwordConfirm']?.errors?.['required']">
+            Le mot de passe de confirmation est obligatoire
+          </span>
+          <span *ngIf="inscriptionForm.controls['passwordConfirm']?.touched  && inscriptionForm.controls['passwordConfirm'].errors?.['notEqual']">
+               Les mots de passe doivent etre identiques
+          </span>       
+        </small>
+      </div>
+    
+   
+    <div class="col-md-3 mb-2">
+      <input type="email" class="form-control" placeholder="Email" formControlName="email">
+      <small *ngIf="myForm.submitted && inscriptionForm.controls['email'].errors" class="text-danger">
+        <span *ngIf="inscriptionForm.controls['email'].errors?.['required']">
+          L'email est obligatoire
+        </span>
+        <span *ngIf="inscriptionForm.controls['email'].errors?.['email']">
+          L'email doit etre au format email
+        </span>
+      </small>
+    </div>   
+      <button type="submit" class="btn btn-outline-secondary">Inscription</button>
+    </div>  
+</form>

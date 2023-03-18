@@ -1,0 +1,26 @@
+<form [formGroup]="connexionForm" (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm" class="mx-auto">
+  <div class="form-row">
+    <div class="col-md-3 mb-2">
+      <input type="text" class="form-control" placeholder="Identifiant" formControlName="identifiant">
+      <small *ngIf="myForm.submitted && connexionForm.controls['identifiant'].errors" class="text-danger">
+        <span *ngIf="connexionForm.controls['identifiant'].errors?.['required']">
+          L'identifiant est obligatoire 
+        </span>
+      </small>
+    </div>
+    <div class="col-md-3 mb-2">
+      <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password">
+      <small *ngIf="myForm.submitted && connexionForm.controls['password'].errors" class="text-danger">
+        <span *ngIf="connexionForm.controls['password'].errors?.['required']">
+          Le mot de passe est obligatoire
+        </span>
+        <span *ngIf="connexionForm.controls['password'].touched && connexionForm.controls['password'].errors?.['minlength']">
+          Le mot de passe doit contenir au minimum 5 caractères
+        </span>
+      </small>
+    </div>
+    <div class="col-md-3 mb-2">
+      <button type="submit" class="btn btn-outline-secondary btn-block">Connexion</button>
+    </div>
+  </div>
+</form>
